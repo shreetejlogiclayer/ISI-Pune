@@ -4,14 +4,16 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node server.js --dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "node server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
-    "emailjs-com": "^3.0.0",
+    "dotenv": "^16.6.1",
     "lucide-react": "^0.469.0",
+    "nodemailer": "^6.10.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.0.2",

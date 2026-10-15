@@ -12,7 +12,7 @@ export default function NotFoundPage() {
           <p className="mt-4 text-base text-slate-600">You can return to the homepage or explore the main sections of the Institute website.</p>
           <div className="mt-6 flex justify-center gap-3">
             <Link to="/" className="btn-primary">Back to home</Link>
-            <Link to="/courses" className="btn-secondary">Browse courses</Link>
+            <Link to="/training" className="btn-secondary">Browse training</Link>
           </div>
         </div>
       </section>

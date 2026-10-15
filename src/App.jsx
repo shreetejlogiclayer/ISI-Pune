@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Provider } from "react-redux";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { store } from "./store/store";
 import AppLayout from "./components/layout/AppLayout";
 import HomePage from "./pages/HomePage";
@@ -8,15 +8,25 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
-const TrainingPage = lazy(() => import("./pages/TrainingPage"));
 const AcademicPage = lazy(() => import("./pages/AcademicPage"));
 const CoursesPage = lazy(() => import("./pages/CoursesPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <ScrollToTop />
         <AppLayout>
           <Suspense
             fallback={
@@ -29,9 +39,8 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/services" element={<ServicesPage />} />
-              <Route path="/training" element={<TrainingPage />} />
+              <Route path="/training" element={<CoursesPage />} />
               <Route path="/academic" element={<AcademicPage />} />
-              <Route path="/courses" element={<CoursesPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>

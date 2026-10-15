@@ -13,6 +13,7 @@ const initialForm = {
   subject: '',
   enquiryType: '',
   message: '',
+  website: '',
 };
 
 export default function ContactPage() {
@@ -111,6 +112,11 @@ export default function ContactPage() {
             <h3 className="font-serif text-lg font-bold text-brand-900 border-b border-slate-200 pb-2.5 mb-6">
               Send an Enquiry
             </h3>
+
+            <div className="absolute -left-[9999px]" aria-hidden="true">
+              <label htmlFor="website">Leave this field empty</label>
+              <input id="website" name="website" value={form.website} onChange={handleChange} tabIndex="-1" autoComplete="off" />
+            </div>
 
             <div className="grid gap-5 md:grid-cols-2">
               <div>
@@ -231,4 +237,3 @@ export default function ContactPage() {
     </>
   );
 }
-

@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import SectionHeading from "../components/common/SectionHeading";
 import { courses } from "../data/courses";
+import { featuredProgrammes } from "../data/featuredProgrammes";
 import SEO from "../components/common/SEO";
 
 const featureCards = [
@@ -47,7 +48,6 @@ export default function HomePage() {
   const featuredCourses = courses
     .filter((course) => course.featured)
     .slice(0, 3);
-  const courseTableRows = courses;
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="container-shell relative z-10 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
+        <div className="container-shell relative z-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-isi-gold-500/40 bg-brand-900/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-isi-gold-300 backdrop-blur-sm mb-4 shadow-sm">
               <ShieldCheck size={14} className="text-isi-gold-400" />
@@ -93,7 +93,7 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link to="/courses" className="btn-gold">
+              <Link to="/training" className="btn-gold">
                 Explore Training Programs
               </Link>
               <Link
@@ -133,48 +133,59 @@ export default function HomePage() {
           </div>
 
           {/* Featured Programmes Table */}
-          <div className="rounded-xl border border-isi-gold-500/30 bg-gradient-to-br from-brand-800/90 to-brand-900/90 p-5 shadow-2xl backdrop-blur-md">
-            <div className="flex items-center justify-between border-b border-brand-700/80 pb-3 mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-isi-gold-400 flex items-center gap-1.5">
-                <Award size={14} />
-                Featured Programmes
-              </span>
-            </div>
+          <div className="flex flex-col rounded-xl border border-isi-gold-500/30 bg-gradient-to-br from-brand-800/90 to-brand-900/90 p-6 shadow-2xl backdrop-blur-md md:p-7">
+            <div>
+              <div className="mb-5 flex items-center justify-between border-b border-brand-700/80 pb-4">
+                <span className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-isi-gold-400">
+                  <Award size={17} />
+                  Featured Programmes
+                </span>
+              </div>
 
-            <div className="overflow-hidden rounded-lg border border-brand-700/60 bg-brand-950/60">
-              <table className="w-full text-left text-[11px] text-slate-200">
-                <thead className="bg-brand-900/80 text-isi-gold-300 uppercase tracking-[0.12em]">
-                  <tr>
-                    <th className="px-3 py-2.5 font-semibold">Course</th>
-                    <th className="px-3 py-2.5 font-semibold">Mode</th>
-                    <th className="px-3 py-2.5 font-semibold">Duration</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {courseTableRows.map((course) => (
-                    <tr
-                      key={course.id}
-                      className="border-t border-brand-700/60 align-top"
-                    >
-                      <td className="px-3 py-2.5 text-white font-semibold leading-snug">
-                        {course.title}
-                      </td>
-                      <td className="px-3 py-2.5 text-brand-200">
-                        {course.mode}
-                      </td>
-                      <td className="px-3 py-2.5 text-brand-100">
-                        {course.duration}
-                      </td>
+              <div className="overflow-hidden rounded-lg border border-brand-700/60 bg-brand-950/60">
+                <table className="w-full table-fixed text-left text-xs leading-relaxed text-slate-200">
+                  <colgroup>
+                    <col className="w-[43%]" />
+                    <col className="w-[15%]" />
+                    <col className="w-[18%]" />
+                    <col className="w-[24%]" />
+                  </colgroup>
+                  <thead className="bg-brand-900/80 text-[10px] text-isi-gold-300 uppercase tracking-[0.1em]">
+                    <tr>
+                      <th className="px-3 py-3 font-semibold">Course</th>
+                      <th className="px-3 py-3 font-semibold">Mode</th>
+                      <th className="px-3 py-3 font-semibold">Duration</th>
+                      <th className="px-3 py-3 font-semibold">Start Date</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {featuredProgrammes.map((course) => (
+                      <tr
+                        key={course.id}
+                        className="border-t border-brand-700/60 align-top"
+                      >
+                        <td className="break-words px-3 py-4 font-semibold text-white">
+                          {course.title}
+                        </td>
+                        <td className="break-words px-3 py-4 text-brand-200">
+                          {course.mode}
+                        </td>
+                        <td className="break-words px-3 py-4 text-brand-100">
+                          {course.duration}
+                        </td>
+                        <td className="break-words px-3 py-4 text-brand-100">
+                          {course.startDate}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-
-            <div className="mt-5 flex gap-3">
+            <div className="mt-4 flex gap-3">
               <Link
-                to="/courses"
-                className="w-full btn-gold text-center text-xs py-2"
+                to="/training"
+                className="w-full btn-gold py-3 text-center text-sm"
               >
                 Program Details
               </Link>
@@ -219,20 +230,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ================= UPCOMING COURSES ================= */}
+      {/* ================= UPCOMING TRAINING ================= */}
       <section className="bg-slate-100/80 border-y border-slate-200">
         <div className="container-shell section-space">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               eyebrow="Programmes"
-              title="Upcoming Training & Certification Courses"
-              description="Certification courses and training modules delivered through open-house and organization-specific programmes."
+              title="Upcoming Training & Certification"
+              description="Certification programmes and training modules delivered through open-house and organization-specific programmes."
             />
             <Link
-              to="/courses"
+              to="/training"
               className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-700 hover:text-brand-900 bg-white px-4 py-2 rounded border border-brand-200 shadow-sm transition"
             >
-              View All Courses <ArrowRight size={14} />
+              View All Training <ArrowRight size={14} />
             </Link>
           </div>
 

@@ -14,13 +14,13 @@ export default function CoursesPage() {
   return (
     <>
       <SEO
-        title="Executive Courses & Certification | Indian Statistical Institute Pune"
-        description="Course catalogue for the Pune Unit with certifications, dates, status, and registration links."
-        canonical="https://isipune.ac.in/courses"
+        title="Professional Training & Certification | Indian Statistical Institute Pune"
+        description="Professional training catalogue for the Pune Unit with certifications, dates, status, and registration links."
+        canonical="https://isipune.ac.in/training"
       />
       <PageHero
-        title="Executive Courses & Certification"
-        description="Professional programmes, certification courses, and statistical analytics offerings from the Pune Unit."
+        title="Professional Training & Certification"
+        description="Professional training programmes, certification courses, and statistical analytics offerings from the Pune Unit."
       />
 
       <section className="container-shell section-space">
